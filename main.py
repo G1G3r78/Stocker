@@ -1,4 +1,4 @@
-import random
+import multiprocessing
 import threading
 
 import apimoex
@@ -9,7 +9,7 @@ from kivy.utils import get_color_from_hex
 from kivy.utils import platform
 from kivy.uix.boxlayout import BoxLayout
 from kivy.clock import Clock
-#from kivy.core.window import Window
+from kivy.core.window import Window
 
 from kivymd.app import MDApp
 from kivymd.uix.boxlayout import MDBoxLayout
@@ -25,10 +25,9 @@ import requests
 #import requests
 #from bs4 import BeautifulSoup
 
-#from threading import Thread
-#from multiprocessing import Process
-
 #{"Lukoil: 7000, "SBER": 3000, "PMSB": 3100, "YDEX": 4000}
+
+Window.maximize()
 
 if platform == "android":
     from android.permissions import request_permissions, Permission
@@ -54,7 +53,7 @@ if platform == "android":
     'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
     'Mozilla/5.0 (X11; Linux i686; rv:124.0) Gecko/20100101 Firefox/124.0']"""
 
-scks: tuple[float] = (308, 6900, 4000, 208.6)
+scks: tuple[float] = (308, 6600, 3900, 280)
 
 
 class Graph1(MDBoxLayout):
@@ -222,22 +221,139 @@ class RoundGraph(MDBoxLayout):
 
 
 class GraphMinus(MDBoxLayout):
-    def __init__(self, stocks: list = [0], **kwargs):
+    def __init__(self, stocks: list = [], **kwargs):
         super(GraphMinus, self).__init__(**kwargs)
-        #self.stocks = stocks
+        self.stocks = stocks
+        print(stocks, "graphminus")
+        if stocks:
+            if stocks[-1] < stocks[-2]:
+                abobq = AKLineChart(
+                    bg_color=(0, 0, 0, 0),
+                    anim=False,
+                    labels=False,
+                    circles_color=(1, 0, 0, 1),
+                    circles_radius="8dp",
+                    lines_color=(1, 0, 0, 1),
+                    y_values=stocks,
+                    x_values=[x for x in range(len(stocks))]
+                )
+                self.add_widget(abobq)
+            else:
+                abobq = AKLineChart(
+                    bg_color=(0, 0, 0, 0),
+                    anim=False,
+                    labels=False,
+                    circles_color=(1, 0, 0, 1),
+                    circles_radius="8dp",
+                    lines_color=(0, 1, 0, 1),
+                    y_values=stocks,
+                    x_values=[x for x in range(len(stocks))]
+                )
+                self.add_widget(abobq)
+        else:
+            pass
 
-        stocks.append(-2000)
-        abobq = AKLineChart(
-            bg_color=(0, 0, 0, 0),
-            anim=False,
-            labels=False,
-            circles=False,
-            lines_color=(1, 0, 0, 1),
-            y_values=stocks,
-            x_values=[x for x in range(len(stocks))]
-        )
-        self.add_widget(abobq)
 
+class GraphMinus2(MDBoxLayout):
+    def __init__(self, stocks: list = [], **kwargs):
+        super(GraphMinus2, self).__init__(**kwargs)
+        self.stocks = stocks
+        print(stocks, "graphminus")
+        if stocks:
+            if stocks[-1] < stocks[-2]:
+                abobq = AKLineChart(
+                    bg_color=(0, 0, 0, 0),
+                    anim=False,
+                    labels=False,
+                    circles_color=(1, 0, 0, 1),
+                    circles_radius="8dp",
+                    lines_color=(1, 0, 0, 1),
+                    y_values=stocks,
+                    x_values=[x for x in range(len(stocks))]
+                )
+                self.add_widget(abobq)
+            else:
+                abobq = AKLineChart(
+                    bg_color=(0, 0, 0, 0),
+                    anim=False,
+                    labels=False,
+                    circles_color=(0, 1, 0, 1),
+                    circles_radius="8dp",
+                    lines_color=(0, 1, 0, 1),
+                    y_values=stocks,
+                    x_values=[x for x in range(len(stocks))]
+                )
+                self.add_widget(abobq)
+        else:
+            pass
+
+
+class GraphMinus3(MDBoxLayout):
+    def __init__(self, stocks: list = [], **kwargs):
+        super(GraphMinus3, self).__init__(**kwargs)
+        self.stocks = stocks
+        print(stocks, "graphminus")
+        if stocks:
+            if stocks[-1] < stocks[-2]:
+                abobq = AKLineChart(
+                    bg_color=(0, 0, 0, 0),
+                    anim=False,
+                    labels=False,
+                    circles_color=(1, 0, 0, 1),
+                    circles_radius="8dp",
+                    lines_color=(1, 0, 0, 1),
+                    y_values=stocks,
+                    x_values=[x for x in range(len(stocks))]
+                )
+                self.add_widget(abobq)
+            else:
+                abobq = AKLineChart(
+                    bg_color=(0, 0, 0, 0),
+                    anim=False,
+                    labels=False,
+                    circles_color=(0, 1, 0, 1),
+                    circles_radius="8dp",
+                    lines_color=(0, 1, 0, 1),
+                    y_values=stocks,
+                    x_values=[x for x in range(len(stocks))]
+                )
+                self.add_widget(abobq)
+        else:
+            pass
+
+
+class GraphMinus4(MDBoxLayout):
+    def __init__(self, stocks: list = [], **kwargs):
+        super(GraphMinus4, self).__init__(**kwargs)
+        self.stocks = stocks
+        print(stocks, "graphminus")
+        if stocks:
+            if stocks[-1] < stocks[-2]:
+                abobq = AKLineChart(
+                    bg_color=(0, 0, 0, 0),
+                    anim=False,
+                    labels=False,
+                    circles_color=(1, 0, 0, 1),
+                    circles_radius="8dp",
+                    lines_color=(1, 0, 0, 1),
+                    y_values=stocks,
+                    x_values=[x for x in range(len(stocks))]
+                )
+                self.add_widget(abobq)
+            else:
+                abobq = AKLineChart(
+                    bg_color=(0, 0, 0, 0),
+                    anim=False,
+                    labels=False,
+                    circles_color=(0, 1, 0, 1),
+                    circles_radius="8dp",
+                    lines_color=(0, 1, 0, 1),
+                    y_values=stocks,
+                    x_values=[x for x in range(len(stocks))]
+                )
+                self.add_widget(abobq)
+        else:
+            pass
 
 #class Image1(BoxLayout):
 #def __init__(self, **kwargs):
@@ -357,16 +473,11 @@ MDNavigationLayout:
                                 padding: 10
                                 spacing: 20
                                 MDLabel:
-                                    #size_hint_y: .2
                                     id: lbl1
-                                    #text: "SBERP"
                                     #pos_hint: {"center_x": .2, "top": .5}
                                     font_style: "Button"
                                 MDLabel:
-                                    #size_hint_y: .2
                                     id: lbl12
-                                    #text: "SBERP"
-                                    #pos_hint: {"center_x": .2, "center_y": .2}
                                     font_style: "Button"
                             GraphMinus:
                                 id: graph2
@@ -398,6 +509,28 @@ MDNavigationLayout:
                                 text: "LKOH"
                                 pos_hint: {"center_x": .35, "top": .92}
                                 font_style: "H5"
+                            MDBoxLayout:
+                                size_hint: .5, .3
+                                pos_hint: {"center_x": .27, "center_y": .3}
+                                orientation: "vertical"
+                                padding: 10
+                                spacing: 20
+                                MDLabel:
+                                    id: lbl2
+                                    #pos_hint: {"center_x": .2, "top": .5}
+                                    font_style: "Button"
+                                MDLabel:
+                                    id: lbl22
+                                    font_style: "Button"
+                            GraphMinus2:
+                                id: graph2b
+                                pos_hint: {"center_x": .7, "center_y": .5}
+                                size_hint: .4, .75
+                            MDLabel:
+                                size_hint: .28, .2
+                                id: lbl23
+                                pos_hint: {"center_x": .985, "center_y": .5}
+                                font_style: "H5"
                         FrostedGlass:
                             id: frfrfr3
                             background: box
@@ -418,6 +551,27 @@ MDNavigationLayout:
                                 text: "YDEX"
                                 pos_hint: {"center_x": .35, "top": .92}
                                 font_style: "H5"
+                            MDBoxLayout:
+                                size_hint: .5, .3
+                                pos_hint: {"center_x": .27, "center_y": .3}
+                                orientation: "vertical"
+                                padding: 10
+                                spacing: 20
+                                MDLabel:
+                                    id: lbl3
+                                    font_style: "Button"
+                                MDLabel:
+                                    id: lbl32
+                                    font_style: "Button"
+                            GraphMinus3:
+                                id: graph3b
+                                pos_hint: {"center_x": .7, "center_y": .5}
+                                size_hint: .4, .75
+                            MDLabel:
+                                size_hint: .28, .2
+                                id: lbl33
+                                pos_hint: {"center_x": .985, "center_y": .5}
+                                font_style: "H5"
                         FrostedGlass:
                             id: frfrfr4
                             background: box
@@ -437,6 +591,27 @@ MDNavigationLayout:
                                 size_hint: .3, .2
                                 text: "PMSBP"
                                 pos_hint: {"center_x": .35, "top": .92}
+                                font_style: "H5"
+                            MDBoxLayout:
+                                size_hint: .5, .3
+                                pos_hint: {"center_x": .27, "center_y": .3}
+                                orientation: "vertical"
+                                padding: 10
+                                spacing: 20
+                                MDLabel:
+                                    id: lbl4
+                                    font_style: "Button"
+                                MDLabel:
+                                    id: lbl42
+                                    font_style: "Button"
+                            GraphMinus3:
+                                id: graph4
+                                pos_hint: {"center_x": .7, "center_y": .5}
+                                size_hint: .4, .75
+                            MDLabel:
+                                size_hint: .28, .2
+                                id: lbl43
+                                pos_hint: {"center_x": .985, "center_y": .5}
                                 font_style: "H5"
                         RecycleBoxLayout:
                             default_size: None, None
@@ -525,7 +700,6 @@ MDNavigationLayout:
                     size_hint: 1, .125
                     MDCard:
                         radius: (20,)
-                        #size_hint: .7, .09
                         md_bg_color: get_color_from_hex("#ffffff55")
                         padding: 10
                         spacing: 5
@@ -538,8 +712,7 @@ MDNavigationLayout:
                                 size_hint: 1, .3
                                 MDIconButton:
                                     icon: "currency-usd" 
-                                    pos_hint: {"top": 1} 
-                                    halign: "left"
+                                    pos_hint: {"x": -0.5, "top": 1} 
                                     size_hint: .5, .2
                                     ripple_scale: 0
                                 MDIconButton:
@@ -548,7 +721,7 @@ MDNavigationLayout:
                                     #icon: "triangle-down"
                                     #theme_icon_color: "Custom"
                                     #icon_color: 1, 0, 0, 1
-                                    pos_hint: {"top": .9}
+                                    pos_hint: {"center_x": 1.5, "top": .9}
                                     halign: "right" 
                                     ripple_scale: 0
                             MDLabel:
@@ -558,7 +731,6 @@ MDNavigationLayout:
                                 pos_hint: {"x": 0, "center_y": .3}
                     MDCard:
                         radius: (20,)
-                        #size_hint: .7, .09
                         md_bg_color: get_color_from_hex("#ffffff55")
                         padding: 10
                         spacing: 5
@@ -571,8 +743,7 @@ MDNavigationLayout:
                                 size_hint: 1, .3
                                 MDIconButton:
                                     icon: "currency-eur" 
-                                    pos_hint: {"top": 1} 
-                                    halign: "left"
+                                    pos_hint: {"x": -0.5, "top": 1} 
                                     size_hint: .5, .2
                                     ripple_scale: 0
                                 MDIconButton:
@@ -581,7 +752,7 @@ MDNavigationLayout:
                                     #icon: "triangle-down"
                                     #theme_icon_color: "Custom"
                                     #icon_color: 1, 0, 0, 1
-                                    pos_hint: {"top": .9}
+                                    pos_hint: {"center_x": 1.5, "top": .9}
                                     halign: "right" 
                                     ripple_scale: 0
                             MDLabel:
@@ -664,7 +835,7 @@ MDNavigationLayout:
                         size_hint: .7, 2.5
                     MDBoxLayout:
                         orientation: "vertical"
-                        size_hint_x: .3
+                        size_hint_x: .35
                         spacing: 50
                         padding: 10
                         MDCard:
@@ -685,7 +856,7 @@ MDNavigationLayout:
                             size_hint: .8, .08
                             pos_hint: {"center_x": .5, "bottom": 1}
                             radius: (30,)
-                            md_bg_color: get_color_from_hex("#d1ffe7")
+                            md_bg_color: get_color_from_hex("#d1ffe799")
                             MDLabel:
                                 text: "IMOEX 2758.3"
                                 font_style: "H6"
@@ -735,6 +906,13 @@ MDNavigationLayout:
 
 
 class Example(MDApp):
+    def __init__(self, **kwargs):
+        super(Example, self).__init__(**kwargs)
+
+        self.t2 = threading.Thread(target=self.currencies)
+        self.t3 = threading.Thread(target=self.crypto)
+        #self.p0 = multiprocessing.Process(target=self.show_graph)
+
     def build(self):
         self.theme_cls.material_style = "M3"
 
@@ -785,14 +963,20 @@ class Example(MDApp):
     def back(self):
         self.root.ids.sm.current = "stocks"
 
-    def sberp_(self) -> float | None:
+    def sberp_(self) -> list | None:
         with requests.Session() as session:
             data = apimoex.get_market_candles(session, 'SBERP')
-        self.t2.start()
-        self.t3.start()
         if data:
             sber = str(round(data[-1]["close"], 2))
-            #integer = sber[0:-2]
+            graph: list[float] = []
+            index: int = -5
+            for i in range(5):
+                graph.append(round(float(data[index]["close"]), 1))
+                index += 1
+            graphminus = GraphMinus(graph)
+            self.root.ids.graph2.clear_widgets()
+            self.root.ids.graph2.add_widget(graphminus)
+            integer = sber[0:-2]
             integer = sber.replace(" ", "", 1)
             integer = float(integer.replace(",", ".", 1))
             #print(integer)
@@ -813,7 +997,9 @@ class Example(MDApp):
                 self.root.ids.lbl13.theme_text_color = "Custom"
                 self.root.ids.lbl13.text_color = get_color_from_hex("#fc0b03")
                 self.root.ids.lbl13.text = "0%"
-            return integer
+            #self.show_graph()
+            #print(graph, "graph return")
+            return graph
         else:
             return None
 
@@ -824,7 +1010,7 @@ class Example(MDApp):
         usd_prev = round(float(response.json()["Valute"]["USD"]["Previous"]), 2)
         if usd:
             self.root.ids.usd_.theme_icon_color = "Custom"
-            self.root.ids.usd_lbl.text = f"{usd}₽"
+            self.root.ids.usd_lbl.text = str(usd) + " ₽"
             if usd < usd_prev:
                 self.root.ids.usd_.icon = "triangle-down"
                 self.root.ids.usd_.icon_color = (1, 0, 0, 1)
@@ -837,7 +1023,7 @@ class Example(MDApp):
         eur_prev = round(float(response.json()["Valute"]["EUR"]["Previous"]), 2)
         if eur:
             self.root.ids.eur_.theme_icon_color = "Custom"
-            self.root.ids.eur_lbl.text = f"{eur}₽"
+            self.root.ids.eur_lbl.text = str(eur) + " ₽"
             if eur < eur_prev:
                 self.root.ids.eur_.icon = "triangle-down"
                 self.root.ids.eur_.theme_icon_color = "Custom"
@@ -855,7 +1041,7 @@ class Example(MDApp):
         response1 = requests.get(url1)
         response2 = requests.get(url2)
         btc = round(float(response1.json()['price']))
-        print(btc)
+        #print(btc)
         eth = round(float(response2.json()['price']))
         if btc:
             #self.root.ids.btc_.theme_icon_color = "Custom"
@@ -870,13 +1056,32 @@ class Example(MDApp):
     def show_graph(self):
         #print(self.root.ids.cl.children)
         #print(self.root.ids.frgl.children)
-        graphminus = GraphMinus(self.stocks)
-        self.root.ids.graph2.clear_widgets()
-        self.root.ids.graph2.add_widget(graphminus)
         graph1 = Graph1(self.stocks)
         self.root.ids.graph1.clear_widgets()
         self.root.ids.graph1.add_widget(graph1)
-        self.root.ids.graphl.text = "Бой баланс:" + str(sum(self.stocks)) + '₽'
+        self.root.ids.graphl.text = "Баланс: " + str(sum(self.stocks)) + '₽'
+        #graphminus = GraphMinus(graph)
+        #self.root.ids.graph2.clear_widgets()
+        #self.root.ids.graph2.add_widget(graphminus)
+        self.t2.start()
+        self.t3.start()
+        graph = self.sberp_()
+        graphminus = GraphMinus(graph)
+        self.root.ids.graph2.clear_widgets()
+        self.root.ids.graph2.add_widget(graphminus)
+        graph2 = self.lkoh_()
+        graphlkoh = GraphMinus2(graph2)
+        self.root.ids.graph2b.clear_widgets()
+        self.root.ids.graph2b.add_widget(graphlkoh)
+        graph3 = self.ydex_()
+        graphlkoh = GraphMinus3(graph3)
+        self.root.ids.graph3b.clear_widgets()
+        self.root.ids.graph3b.add_widget(graphlkoh)
+        graph4 = self.pmsbp_()
+        graphlkoh = GraphMinus4(graph4)
+        self.root.ids.graph4.clear_widgets()
+        self.root.ids.graph4.add_widget(graphlkoh)
+        #print(self.show_graph, "show")
         #self.root.ids.frgl.clear_widgets()
         #self.t1.start()
         #self.p.close()
@@ -886,10 +1091,10 @@ class Example(MDApp):
         self.root.ids.graph3.clear_widgets()
         self.root.ids.graph3.add_widget(graph3)
 
-    def open_nav(self):
+    #def open_nav(self):
         #self.root.ids.frgl.clear_widgets()
-        self.root.ids.nav_drawer.set_state("open")
-        print(self.root.ids.nav_drawer.state)
+    #    self.root.ids.nav_drawer.set_state("open")
+    #    print(self.root.ids.nav_drawer.state)
         #Clock.schedule_once(self.show_graph, 0.16)
         #Clock.schedule_interval(self.closee, 0.1)
 
@@ -897,6 +1102,126 @@ class Example(MDApp):
     #    url = "https://iss.moex.com/iss/statistics/engines/stock/markets/index/analytics/IMOEX.json?iss.meta=off&limitt=100"
     #    with requests.Session() as session:
     #        data = apimoex.get_board_history(session, "")
+
+    def lkoh_(self) -> list | None:
+        with requests.Session() as session:
+            data = apimoex.get_market_candles(session, 'LKOH')
+        if data:
+            lkoh = str(round(data[-1]["close"], 2))
+            graph: list[float] = []
+            index: int = -5
+            for i in range(5):
+                graph.append(round(float(data[index]["close"]), 1))
+                index += 1
+            graphminus = GraphMinus2(graph)
+            self.root.ids.graph2b.clear_widgets()
+            self.root.ids.graph2b.add_widget(graphminus)
+            integer = lkoh[0:-2]
+            integer = lkoh.replace(" ", "", 1)
+            integer = float(integer.replace(",", ".", 1))
+            #print(integer)
+            self.root.ids.lbl2.text = '1 шт. - ' + str(integer) + "₽"
+            self.root.ids.lbl22.text = "6600 -> " + str(integer)
+            global scks
+            lbl = round(integer*100/scks[1])
+            lbl: int = lbl - 100
+            if lbl < 100:
+                self.root.ids.lbl23.theme_text_color = "Custom"
+                self.root.ids.lbl23.text_color = get_color_from_hex("#fc0b03")
+                self.root.ids.lbl23.text = str(lbl) + "%"
+            elif lbl > 100:
+                self.root.ids.lbl23.theme_text_color = "Custom"
+                self.root.ids.lbl23.text_color = get_color_from_hex("#10eb38")
+                self.root.ids.lbl23.text = "+" + str(lbl) + "%"
+            else:
+                self.root.ids.lbl23.theme_text_color = "Custom"
+                self.root.ids.lbl23.text_color = get_color_from_hex("#fc0b03")
+                self.root.ids.lbl23.text = "0%"
+            #self.show_graph()
+            #print(graph, "graph return")
+            return graph
+        else:
+            return None
+
+    def ydex_(self) -> list | None:
+        with requests.Session() as session:
+            data = apimoex.get_market_candles(session, 'YDEX')
+        if data:
+            ydex = str(round(data[-1]["close"], 2))
+            graph: list[float] = []
+            index: int = -5
+            for i in range(5):
+                graph.append(round(float(data[index]["close"]), 1))
+                index += 1
+            graphminus = GraphMinus3(graph)
+            self.root.ids.graph3b.clear_widgets()
+            self.root.ids.graph3b.add_widget(graphminus)
+            integer = ydex[0:-2]
+            integer = ydex.replace(" ", "", 1)
+            integer = float(integer.replace(",", ".", 1))
+            #print(integer)
+            self.root.ids.lbl3.text = '1 шт. - ' + str(integer) + "₽"
+            self.root.ids.lbl32.text = "3900 -> " + str(integer)
+            global scks
+            lbl = round(integer*100/scks[2])
+            lbl: int = lbl - 100
+            if lbl < 100:
+                self.root.ids.lbl33.theme_text_color = "Custom"
+                self.root.ids.lbl33.text_color = get_color_from_hex("#fc0b03")
+                self.root.ids.lbl33.text = str(lbl) + "%"
+            elif lbl > 100:
+                self.root.ids.lbl33.theme_text_color = "Custom"
+                self.root.ids.lbl33.text_color = get_color_from_hex("#10eb38")
+                self.root.ids.lbl33.text = "+" + str(lbl) + "%"
+            else:
+                self.root.ids.lbl33.theme_text_color = "Custom"
+                self.root.ids.lbl33.text_color = get_color_from_hex("#fc0b03")
+                self.root.ids.lbl33.text = "0%"
+            #self.show_graph()
+            #print(graph, "graph return")
+            return graph
+        else:
+            return None
+
+    def pmsbp_(self) -> list | None:
+        with requests.Session() as session:
+            data = apimoex.get_market_candles(session, 'PMSBP')
+        if data:
+            pmsbp = str(round(data[-1]["close"], 2))
+            graph: list[float] = []
+            index: int = -5
+            for i in range(5):
+                graph.append(round(float(data[index]["close"]), 1))
+                index += 1
+            graphminus = GraphMinus4(graph)
+            self.root.ids.graph4.clear_widgets()
+            self.root.ids.graph4.add_widget(graphminus)
+            integer = pmsbp[0:-2]
+            integer = pmsbp.replace(" ", "", 1)
+            integer = float(integer.replace(",", ".", 1))
+            #print(integer)
+            self.root.ids.lbl4.text = '10 шт. - ' + str(round(integer*10)) + "₽"
+            self.root.ids.lbl42.text = "2800 -> " + str(integer)
+            global scks
+            lbl = round(integer*100/scks[3])
+            lbl: int = lbl - 100
+            if lbl < 100:
+                self.root.ids.lbl43.theme_text_color = "Custom"
+                self.root.ids.lbl43.text_color = get_color_from_hex("#fc0b03")
+                self.root.ids.lbl43.text = str(lbl) + "%"
+            elif lbl > 100:
+                self.root.ids.lbl43.theme_text_color = "Custom"
+                self.root.ids.lbl43.text_color = get_color_from_hex("#10eb38")
+                self.root.ids.lbl43.text = "+" + str(lbl) + "%"
+            else:
+                self.root.ids.lbl43.theme_text_color = "Custom"
+                self.root.ids.lbl43.text_color = get_color_from_hex("#fc0b03")
+                self.root.ids.lbl43.text = "0%"
+            #self.show_graph()
+            #print(graph, "graph return")
+            return graph
+        else:
+            return None
 
     def on_start(self):
         if platform == "android":
@@ -910,25 +1235,21 @@ class Example(MDApp):
             )
 
         #t = Thread(target=self.open_nav, daemon=Thread)
-        #self.t = Thread(target=self.show_graph)
-        #self.show_graph()
-        #t.run()
-        t0 = threading.Thread(target=self.open_nav)
-        t0.start()
-        t1 = threading.Thread(target=self.sberp_)
-        t1.start()
+        #t1 = threading.Thread(target=self.sberp_)
+        #t1.start()
+        #self.sberp_()
         self.round_graph()
-        self.show_graph()
-        self.t2 = threading.Thread(target=self.currencies)
-        self.t3 = threading.Thread(target=self.crypto)
+        #Clock.schedule_once(self.show_graph, 5)
         #self.r4 = threading.Thread(target=self.imoex)
-        #t2 = threading.Thread(target=self.lkoh())
-        #t3 = threading.Thread(target=self.ydex())
-        #t4 = threading.Thread(target=self.pmsbp())
+        #t2 = threading.Thread(target=self.lkoh_)
+        #t3 = threading.Thread(target=self.ydex_())
+        #t4 = threading.Thread(target=self.pmsbp_())
         #t2.start()
         #t3.start()
         #t4.start()
         self.fps_monitor_start()
+        self.show_graph()
+        #self.p0.start()
         #p.terminate()
 
 
