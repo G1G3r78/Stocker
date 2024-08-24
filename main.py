@@ -378,22 +378,32 @@ KV = '''
 #:import Gradient kivy_gradient.Gradient
     
 MDNavigationLayout:
+    #id: sm
     MDScreenManager:
-        id: sm            
+        #id: sm            
         MDScreen:
+            id: sm
             name: "stocks"
             BoxLayout:
                 id: box
-                canvas:
-                    Rectangle:
-                        size: self.size
-                        pos: self.pos
-                        texture:
-                            Gradient.vertical(
-                            get_color_from_hex("2999ad"),
-                            get_color_from_hex("31e975"),
-                            get_color_from_hex("574bcd")
-                            )
+                #canvas:
+                    #Rectangle:
+                        #size: self.size
+                        #pos: self.pos
+                        #texture:
+                            #Gradient.vertical(
+                            #get_color_from_hex("2999ad"),
+                            #get_color_from_hex("31e975"),
+                            #get_color_from_hex("574bcd")
+                            #)
+                Image:
+                    id: bbbb
+                    #pos: self.pos
+                    size_hint: 1, None
+                    size: root.size
+                    allow_stretch: True
+                    keep_ratio: False
+                    source: "bg1.jpg"  
             FrostedGlass:
                 id: frfrfr1
                 background: box  
@@ -418,7 +428,7 @@ MDNavigationLayout:
                     #md_bg_color: "#e7e4c000"
                     ##specific_text_color: "#4a4939"
                     #left_action_items: [["menu", lambda x: app.open_nav()]]
-                    #right_action_items: [["format-paint", lambda y: app.theme()]]                      
+                    ##right_action_items: [["format-paint", lambda y: app.theme()]]                      
                 #FrostedGlass:
                     ##id: frfrfr1
                     #background: box  
@@ -435,7 +445,7 @@ MDNavigationLayout:
                 RecycleView:
                     do_scroll_x: True
                     do_scroll_y: False
-                    size_hint: 1, .25
+                    size_hint: 1, .225
                     pos_hint: {"top": .93}
                     BoxLayout:
                         #id: bbb
@@ -453,7 +463,7 @@ MDNavigationLayout:
                             blur_size: 5
                             saturation: 1.0
                             luminosity: 1.0
-                            overlay_color: "#41e97540"
+                            overlay_color: "#41e97545"
                             noise_opacity: 0.04
                             border_radius:  dp(30), dp(30), dp(30), dp(30)
                             outline_color: "#ffffff"
@@ -496,7 +506,7 @@ MDNavigationLayout:
                             blur_size: 5
                             saturation: 1.0
                             luminosity: 1.0
-                            overlay_color: "#ff000066"
+                            overlay_color: "#ff000045"
                             noise_opacity: 0.04
                             border_radius:  dp(30), dp(30), dp(30), dp(30)
                             outline_color: "#ffffff"
@@ -538,7 +548,7 @@ MDNavigationLayout:
                             blur_size: 5
                             saturation: 1.0
                             luminosity: 1.0
-                            overlay_color: "#ffffff22" 
+                            overlay_color: "#ffffff45" 
                             noise_opacity: 0.04
                             border_radius:  dp(30), dp(30), dp(30), dp(30)
                             outline_color: "#ffffff"
@@ -579,7 +589,7 @@ MDNavigationLayout:
                             blur_size: 5
                             saturation: 1.0
                             luminosity: 1.0
-                            overlay_color: "#0c1bf022"
+                            overlay_color: "#0c1bf045"
                             noise_opacity: 0.04
                             border_radius:  dp(30), dp(30), dp(30), dp(30)
                             outline_color: "#ffffff"
@@ -796,87 +806,87 @@ MDNavigationLayout:
                                 id: eth_lbl
                                 size_hint: 1, .7
                                 pos_hint: {"x": 0}                                    
-        MDScreen:
-            name: "theme"
-            id: st
-            MDBoxLayout:
-                AsyncImage:
-                    id: bbbb
-                    #pos: self.pos
-                    size_hint: 1, None
-                    size: root.size
-                    allow_stretch: True
-                    keep_ratio: False
-                    source: "https://oboi-download.ru/files/wallpapers/793/22154.jpg"      
-                                                          
-            MDTopAppBar:
-                #title: "Navigation Drawer"
-                duration: 0
-                elevation: 0
-                _no_ripple_effect: True
-                ripple_scale: 0
-                ripple_color: (0, 0, 0, 0)
-                #remove_shadow: True
-                pos_hint: {"top": 1}
-                md_bg_color: "#e7e4c000"
-                #specific_text_color: "#4a4939"
-                #left_action_items: [["menu", lambda x: app.open_nav()]]
-                left_action_items: [["arrow-left-thick", lambda y: app.back()]]
-            MDBoxLayout:
-                orientation: "vertical"    
-                pos_hint: {"center_y": .5}
-                size_hint: 1, .7
-                padding: 20
-                spacing: 20
-                MDBoxLayout:
-                    size_hint: 1, .4
-                    Graph1:      
-                        id: graph1
-                        size_hint: .7, 2.5
-                    MDBoxLayout:
-                        orientation: "vertical"
-                        size_hint_x: .35
-                        spacing: 50
-                        padding: 10
-                        MDCard:
-                            radius: (30,)
-                            size_hint: .8, .08
-                            pos_hint: {"center_x": .5, "top": 1}
-                            md_bg_color: get_color_from_hex("#8696ff99")
-                            #line_color: get_color_from_hex("#ffffff99")
-                            #line_color_width: 5
-                            MDLabel:
-                                id: graphl
-                                font_style: "H6"
-                                style: "Bold"
-                                pos_hint: {"center_y": .5}
-                                halign: "center"
-                                adaptive_height: True                  
-                        MDCard:
-                            size_hint: .8, .08
-                            pos_hint: {"center_x": .5, "bottom": 1}
-                            radius: (30,)
-                            md_bg_color: get_color_from_hex("#d1ffe799")
-                            MDLabel:
-                                text: "IMOEX 2758.3"
-                                font_style: "H6"
-                                style: "Bold"
-                                pos_hint: {"center_y": .5}
-                                halign: "center"
-                                adaptive_height: True
-                                #size_hint: .5, .5
-                FrostedGlass:
-                    background: bbbb
-                    size_hint: 1, .6
-                    blur_size: 5
-                    saturation: 1
-                    luminosity: 1
-                    overlay_color: "#ffffff44"
-                    #pos_hint: {"center_x": .5, "center_y": .5}
-                    noise_opacity: 0.035
-                    border_radius:  dp(30), dp(30), dp(30), dp(30)
-                    outline_color: "#ffffff88"
-                    outline_width: 1         
+        #MDScreen:
+            #name: "theme"
+            #id: st
+            #MDBoxLayout:
+                #AsyncImage:
+                    #id: bbbb
+                    ##pos: self.pos
+                    #size_hint: 1, None
+                    #size: root.size
+                    #allow_stretch: True
+                    #keep_ratio: False
+                    #source: "https://oboi-download.ru/files/wallpapers/793/22154.jpg"      
+#                                                          
+            #MDTopAppBar:
+                ##title: "Navigation Drawer"
+                #duration: 0
+                #elevation: 0
+                #_no_ripple_effect: True
+                #ripple_scale: 0
+                #ripple_color: (0, 0, 0, 0)
+                ##remove_shadow: True
+                #pos_hint: {"top": 1}
+                #md_bg_color: "#e7e4c000"
+                ##specific_text_color: "#4a4939"
+                ##right_action_items: [["menu", lambda x: app.open_nav()]]
+                #left_action_items: [["arrow-left-thick", lambda y: app.back()]]
+            #MDBoxLayout:
+                #orientation: "vertical"    
+                #pos_hint: {"center_y": .5}
+                #size_hint: 1, .7
+                #padding: 20
+                #spacing: 20
+                #MDBoxLayout:
+                    #size_hint: 1, .4
+                    #Graph1:      
+                        #id: graph1
+                        #size_hint: .7, 2.5
+                    #MDBoxLayout:
+                        #orientation: "vertical"
+                        #size_hint_x: .35
+                        #spacing: 50
+                        #padding: 10
+                        #MDCard:
+                            #radius: (30,)
+                            #size_hint: .8, .08
+                            #pos_hint: {"center_x": .5, "top": 1}
+                            #md_bg_color: get_color_from_hex("#8696ff99")
+                            ##line_color: get_color_from_hex("#ffffff99")
+                            ##line_color_width: 5
+                            #MDLabel:
+                                #id: graphl
+                                #font_style: "H6"
+                                #style: "Bold"
+                                #pos_hint: {"center_y": .5}
+                                #halign: "center"
+                                #adaptive_height: True                  
+                        #MDCard:
+                            #size_hint: .8, .08
+                            #pos_hint: {"center_x": .5, "bottom": 1}
+                            #radius: (30,)
+                            #md_bg_color: get_color_from_hex("#d1ffe799")
+                            #MDLabel:
+                                #text: "IMOEX 2758.3"
+                                #font_style: "H6"
+                                #style: "Bold"
+                                #pos_hint: {"center_y": .5}
+                                #halign: "center"
+                                #adaptive_height: True
+                                ##size_hint: .5, .5
+                #FrostedGlass:
+                    #background: bbbb
+                    #size_hint: 1, .6
+                    #blur_size: 5
+                    #saturation: 1
+                    #luminosity: 1
+                    #overlay_color: "#ffffff44"
+                    ##pos_hint: {"center_x": .5, "center_y": .5}
+                    #noise_opacity: 0.035
+                    #border_radius:  dp(30), dp(30), dp(30), dp(30)
+                    #outline_color: "#ffffff88"
+                    #outline_width: 1         
                                                                   
     #MDNavigationDrawer:
         #id: nav_drawer
@@ -889,13 +899,13 @@ MDNavigationLayout:
         ##closing_time: .15
         #FrostedGlass:
             #id: frgl
-            #background: sm  #best match: sm
+            #background: bbbb  #best match: sm
             #size_hint_y: .95
             #pos_hint: {"center_y": .5}
             #blur_size: 5
             #saturation: 1
             #luminosity: 1
-            #overlay_color: "#ffffff33"
+            #overlay_color: "#ffffff00"
             ##overlay_color: "#ffffff55"
             #noise_opacity: 0
             #border_radius:  dp(0), dp(30), dp(30), dp(0)
@@ -1056,10 +1066,10 @@ class Example(MDApp):
     def show_graph(self):
         #print(self.root.ids.cl.children)
         #print(self.root.ids.frgl.children)
-        graph1 = Graph1(self.stocks)
-        self.root.ids.graph1.clear_widgets()
-        self.root.ids.graph1.add_widget(graph1)
-        self.root.ids.graphl.text = "Баланс: " + str(sum(self.stocks)) + '₽'
+        #graph1 = Graph1(self.stocks)
+        #self.root.ids.graph1.clear_widgets()
+        #self.root.ids.graph1.add_widget(graph1)
+        #self.root.ids.graphl.text = "Баланс: " + str(sum(self.stocks)) + '₽'
         #graphminus = GraphMinus(graph)
         #self.root.ids.graph2.clear_widgets()
         #self.root.ids.graph2.add_widget(graphminus)
@@ -1091,15 +1101,15 @@ class Example(MDApp):
         self.root.ids.graph3.clear_widgets()
         self.root.ids.graph3.add_widget(graph3)
 
-    #def open_nav(self):
+    def open_nav(self):
         #self.root.ids.frgl.clear_widgets()
-    #    self.root.ids.nav_drawer.set_state("open")
+        self.root.ids.nav_drawer.set_state("open")
     #    print(self.root.ids.nav_drawer.state)
         #Clock.schedule_once(self.show_graph, 0.16)
         #Clock.schedule_interval(self.closee, 0.1)
 
     #def imoex(self):
-    #    url = "https://iss.moex.com/iss/statistics/engines/stock/markets/index/analytics/IMOEX.json?iss.meta=off&limitt=100"
+    #    url = "https://iss.moext.com/iss/statistics/engines/stock/markets/index/analytics/IMOEX.json?iss.meta=off&limitt=100"
     #    with requests.Session() as session:
     #        data = apimoex.get_board_history(session, "")
 
@@ -1235,20 +1245,21 @@ class Example(MDApp):
             )
 
         #t = Thread(target=self.open_nav, daemon=Thread)
-        #t1 = threading.Thread(target=self.sberp_)
-        #t1.start()
+        t1 = threading.Thread(target=self.sberp_)
+        #t1.run()
+        t2 = threading.Thread(target=self.lkoh_)
+        t3 = threading.Thread(target=self.ydex_)
+        t4 = threading.Thread(target=self.pmsbp_)
+        #t2.run()
+        #t3.run()
+        #t4.run()
         #self.sberp_()
         self.round_graph()
         #Clock.schedule_once(self.show_graph, 5)
         #self.r4 = threading.Thread(target=self.imoex)
-        #t2 = threading.Thread(target=self.lkoh_)
-        #t3 = threading.Thread(target=self.ydex_())
-        #t4 = threading.Thread(target=self.pmsbp_())
-        #t2.start()
-        #t3.start()
-        #t4.start()
         self.fps_monitor_start()
-        self.show_graph()
+        p = multiprocessing.Process(target=self.show_graph)
+        p.run()
         #self.p0.start()
         #p.terminate()
 
