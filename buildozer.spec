@@ -37,7 +37,7 @@ version = 1.0
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy==2.3.0,kivymd==1.2.0,pillow,kivy_garden.frostedglass,kivygradient,kivymd_extensions.akivymd==1.2.7,apimoex,android
+requirements = python3,kivy==2.3.0,kivymd==1.2.0,pillow,kivy_garden.frostedglass,kivygradient,kivymd_extensions.akivymd==1.2.7,apimoex,android,requests_html,beautifulsoup4,bs4,fake-useragent,parse,pyquery,w3lib,pyppeteer,pycparser,peewee,soupsieve,appdirs,pyee,websockets,tqdm,webencodings,WebOb,yarl,cssselect,lxml==4.9.2,lxml_html_clean
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
